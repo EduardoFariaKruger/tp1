@@ -3,11 +3,13 @@
 /* coloque seus includes aqui */
 
 #include <stdio.h>
-#include "racionais.h"
+#include "racionais.c"
 
 int main (){
 
     /* coloque seu codido aqui */
+
+    printf("asdasdasd\n");
 
     return 0;
 }
