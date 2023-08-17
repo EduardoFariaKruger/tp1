@@ -1,6 +1,6 @@
 # Makefile de exemplo (Manual do GNU Make)
      
-CFLAGS = -Wall # flags de compilacao
+CFLAGS = -Wall -g # flags de compilacao
 CC = gcc
 
 all: tp1.o racionais.o
