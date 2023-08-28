@@ -64,7 +64,6 @@ struct racional sorteia_r(int n)
     if (r.den == 0)
     {
         r.valido = 0;
-        return r;
     }
     return simplifica_r(r);
 }
@@ -87,16 +86,31 @@ struct racional cria_r(int numerador, int denominador)
 
 /*
  * Essa função usa dos valores de num e den de uma struct para imprimir um número racional no formato "num/den".
+ * Como as outras funções retornam os valores simplificados, caso o racional recebido esteja na forma 1/1, o algoritmo dessa função o retornará como sendo apenas 1
+ * E como as outras funções retornam os racionais simplificados, essa função não precisa trabalhar com casos do tipo numerador = denominador, pois eles já entrarão na forma 1/1
 */
 void imprime_r(struct racional r)
 {
     if ((r.num == 0) || (r.den == 1))
     {
         printf("%d  ", r.num);
+        return;
+    }
+    if ((r.den == (-1)) && (r.num > 0))
+    {
+        printf("%d ", r.num*(-1));
+    }
+    if ((r.den < (-1)) && (r.num < 0))
+    {
+        printf("%d/%d ", r.num*(-1), r.den*(-1));
+    }
+    if ((r.den < (-1)) && (r.num > 0))
+    {
+        printf("%d/%d ", r.num*(-1), r.den*(-1));
     }
     else
     {
-        printf("%d/%d  ", r.num, r.den);
+        printf("%d/%d ", r.num, r.den);
     }
 }
 
@@ -124,8 +138,7 @@ struct racional subtrai_r(struct racional r1, struct racional r2)
     int minMC = mmc(r1.den, r2.den);
     r1.num = minMC/r1.den*r1.num - minMC/r2.den*r2.num;
     r1.den = minMC;
-    simplifica_r(r1);
-    return r1;
+    return simplifica_r(r1);
 }
 
 /*
@@ -135,8 +148,7 @@ struct racional multiplica_r(struct racional r1, struct racional r2)
 {
     r1.num = r1.num * r2.num;
     r1.den = r1.den * r2.den;
-    r1 = simplifica_r(r1);
-    return r1;
+    return simplifica_r(r1);
 }
 
 /*

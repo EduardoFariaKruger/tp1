@@ -12,7 +12,10 @@ struct racional r1, r2, soma, subtracao, multiplicacao, divisao;
 
 int main (){
 
+    /* geração da chave aleatória */
     srand(0);
+    
+    
     scanf("%d", &n);
     scanf("%d", &max);
     
